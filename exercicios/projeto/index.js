@@ -1,7 +1,7 @@
 let inputTarefa = document.querySelector('form input');
 let form = document.querySelector('form');
 let ul = document.getElementById('todo-list-container');
-let botaoMarcarTodos = document.getElementById('marcar-todos')
+let botaoMarcarDesmarcarTodos = document.getElementById('marcar-todos')
 let botaoDeletarTodos = document.getElementById('deletar-todos');
 // PEGAR O QUE ESTA ESCRITO NO INPUT
 // console.log(inputTarefa.value)
@@ -16,14 +16,24 @@ function deletarTodasTarefas() {
 
 botaoDeletarTodos.addEventListener('click', deletarTodasTarefas);
 
-function marcarTodasTarefas() {
-  let itensDaListaDeTarefas = document.querySelectorAll('li');
-  itensDaListaDeTarefas.forEach(function (li) {
-    li.classList.add('checked');
-  })
+function marcarDesmarcarTodasTarefas() {
+  let itensDaListaDeTarefas=document.querySelectorAll('li')
+  if (botaoMarcarDesmarcarTodos.innerText === 'Marcar todas') {
+      let itensDaListaDeTarefas = document.querySelectorAll('li');
+      itensDaListaDeTarefas.forEach(function (li) {
+        li.classList.add('checked');
+      })
+      botaoMarcarDesmarcarTodos.innerText= 'Desmarcar todas'
+  } else {
+      let itensDaListaDeTarefas = document.querySelectorAll('li');
+      itensDaListaDeTarefas.forEach(function (li) {
+        li.classList.remove('checked');
+      })
+      botaoMarcarDesmarcarTodos.innerText= 'Marcar todas'
+  }
 }
 
-botaoMarcarTodos.addEventListener('click', marcarTodasTarefas)
+botaoMarcarDesmarcarTodos.addEventListener('click', marcarDesmarcarTodasTarefas)
 
 function marcarTarefa(evento) {
   evento.target.classList.toggle('checked');
